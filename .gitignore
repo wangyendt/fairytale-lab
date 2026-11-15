@@ -1,0 +1,29 @@
+# Local dependencies and build environments
+node_modules/
+.venv/
+venv/
+.build-env/
+__pycache__/
+*.py[cod]
+
+# Reproducible/generated build outputs; local desktop distribution lives here
+/dist/
+/build/
+/.build/
+/work/
+*.spec
+*.log
+
+# Local configuration / credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# OS and editor-local files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/

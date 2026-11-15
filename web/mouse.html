@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#147c86"><title>童话实验室 · 鼠国大力士</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='17' fill='%23147c86'/%3E%3Ccircle cx='20' cy='22' r='10' fill='%23d9f2eb'/%3E%3Ccircle cx='44' cy='22' r='10' fill='%23d9f2eb'/%3E%3Cellipse cx='32' cy='38' rx='18' ry='20' fill='white'/%3E%3Ccircle cx='25' cy='36' r='2' fill='%23243f50'/%3E%3Ccircle cx='40' cy='36' r='2' fill='%23243f50'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script>if(new URLSearchParams(location.search).has('embed'))document.documentElement.classList.add('embedded');</script>
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="#" aria-label="童话实验室首页"><svg viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="13" fill="#147c86"/><circle cx="14" cy="15" r="6" fill="#d9f2eb"/><circle cx="30" cy="15" r="6" fill="#d9f2eb"/><path d="M11 24 Q11 12 22 15 Q33 12 33 24 Q31 35 22 36 Q13 35 11 24" fill="#fff"/><circle cx="18" cy="24" r="1.7" fill="#24445b"/><circle cx="27" cy="24" r="1.7" fill="#24445b"/><path d="M20 29 L24 29 L22 31Z" fill="#e6958f"/></svg><span><b>童话实验室</b><small>FAIRYTALE SCIENCE LAB</small></span></a>
+    <nav aria-label="主导航"><button class="nav-item active" id="workbenchNav">实验工作台</button><button class="nav-item" id="libraryBtn">我的实验册 <span class="tiny-count">1</span></button></nav>
+    <div class="header-actions"><span class="offline"><i></i> 离线可用</span><button class="icon-button" id="helpBtn" aria-label="打开操作指南">?</button><button class="icon-button" id="fullscreenBtn" aria-label="切换全屏">⛶</button></div>
+  </header>
+  <main>
+    <section class="lesson-heading"><div><div class="eyebrow">故事里的科学 <span>/</span> 实验 01</div><h1>鼠国大力士 <span class="topic-tag">杠杆 & 定滑轮</span></h1><p>不靠蛮力，靠好办法。帮小老鼠把神奇的石头升高 <strong>10 厘米</strong>。</p></div><button class="quiet-button" id="settingsBtn"><span>⚙</span> 教师设置</button></section>
+    <ol class="steps" aria-label="实验步骤">
+      <li><button data-step="0"><span class="step-num">1</span><span><b>撬动大石头</b><small>木棒 · 支点 · 网兜</small></span><span class="step-arrow">›</span></button></li>
+      <li><button data-step="1"><span class="step-num">2</span><span><b>搭好小架子</b><small>四根支腿 · 横梁 · 滑轮</small></span><span class="step-arrow">›</span></button></li>
+      <li><button data-step="2"><span class="step-num">3</span><span><b>连接绳与篮</b><small>一端网兜，一端竹篮</small></span><span class="step-arrow">›</span></button></li>
+      <li><button data-step="3"><span class="step-num">4</span><span><b>让石头变金</b><small>加小石子，观察升高</small></span><span class="step-spark">✧</span></button></li>
+    </ol>
+    <div class="workbench">
+      <aside class="parts-panel panel">
+        <div class="panel-title"><h2>零件盒</h2><span id="partCount">0 / 11 已安装</span></div>
+        <p class="panel-caption">拖到虚线处，靠近就会吸附</p>
+        <div class="part-filters" role="group" aria-label="零件分类"><button class="selected" data-filter="all">全部</button><button data-filter="wood">木制件</button><button data-filter="machine">其他零件</button></div>
+        <div id="partsList" class="parts-list"></div>
+        <div class="stone-note"><span class="stone-mini">◆</span><span>大石头已在场景中<small>先用杠杆把它翻进网兜</small></span></div>
+        <div class="part-tip"><span>↖</span> 也可以先点零件，再点虚线位置</div>
+      </aside>
+      <section class="scene-panel panel" aria-label="互动实验场景">
+        <div class="scene-toolbar"><div class="scene-label"><i></i> 王宫前的小工地</div><div><label class="guide-toggle"><input type="checkbox" id="guidesToggle" checked>吸附提示</label><button class="text-button" id="undoBtn" disabled>↶ 撤销</button></div></div>
+        <div class="scene-wrap" id="sceneWrap">
+          <svg id="scene" viewBox="0 0 1100 600" role="group" aria-label="鼠国大力士实验台：将零件拖到吸附位置进行组装">
+            <defs>
+              <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#e7f4f8"/><stop offset="1" stop-color="#f3f9f7"/></linearGradient>
+              <linearGradient id="wood" x2="0.2" y2="1"><stop stop-color="#cda36a"/><stop offset=".5" stop-color="#b98a51"/><stop offset="1" stop-color="#976b3e"/></linearGradient>
+              <linearGradient id="rock" x2=".8" y2="1"><stop stop-color="#a9b9c4"/><stop offset="1" stop-color="#748998"/></linearGradient>
+              <linearGradient id="gold" x2=".6" y2="1"><stop stop-color="#ffe78b"/><stop offset=".45" stop-color="#efbf46"/><stop offset="1" stop-color="#cf9226"/></linearGradient>
+              <linearGradient id="basket" x2="0" y2="1"><stop stop-color="#ddba7e"/><stop offset="1" stop-color="#bb8f51"/></linearGradient>
+              <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#a4c8cd" stroke-width=".6" opacity=".25"/></pattern>
+              <pattern id="weave" width="12" height="10" patternUnits="userSpaceOnUse"><path d="M0 5H12M6 0V10" stroke="#956e3c" stroke-width="1.3" opacity=".45"/></pattern>
+              <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#365762" flood-opacity=".14"/></filter>
+              <filter id="goldGlow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="12"/></filter>
+            </defs>
+            <rect width="1100" height="600" fill="url(#sky)"/><rect width="1100" height="500" fill="url(#grid)"/>
+            <g class="landscape" opacity=".45"><path d="M0 467Q160 379 304 461Q435 414 575 475Q782 385 1100 457V510H0Z" fill="#c5ded4"/><path d="M0 485Q242 437 420 479Q762 431 1100 475V510H0Z" fill="#b4d5c5"/></g>
+            <g opacity=".32" fill="#fff"><path d="M74 133q-9-24 16-27 10-26 34-9 29-5 29 21 28 5 17 20H76Z"/><path d="M886 80q-4-21 19-22 12-24 29-5 24-4 26 19 22 3 17 15H886Z"/></g>
+            <g id="palace" opacity=".5" stroke="#aec9cc" stroke-width="2" fill="#dae9e8"><path d="M42 431V292H88V267H124V292H166V431M55 292V260H76V292M132 292V255H153V292"/><path d="M54 260L66 235L78 260M131 255L143 231L155 255" fill="#b4d3d3"/><path d="M90 431V387Q106 364 122 387V431" fill="#b9d4d2"/><path d="M67 237V215M143 232V211M67 215L87 222L67 226M143 211L162 217L143 221"/></g>
+            <path d="M0 500H1100V600H0Z" fill="#e3e7d5"/><path d="M0 500H1100" stroke="#bcccb3" stroke-width="2"/>
+            <g fill="#c2cfb7" opacity=".65"><ellipse cx="570" cy="514" rx="258" ry="15"/><path d="M88 519l5-9 4 10m895 11 6-11 4 11M186 559l5-10 5 10m661-9 5-9 5 9" stroke="#a5bea0" stroke-width="2"/></g>
+            <g id="ghostLayer"></g><g id="frameLayer"></g><g id="leverLayer"></g><g id="ropeLayer"></g><g id="loadLayer"></g><g id="looseLayer"></g>
+            <g id="ruler" transform="translate(794 340)"><rect x="-12" y="-39" width="76" height="219" rx="12" fill="#fff" opacity=".8"/><text x="22" y="-18" text-anchor="middle" class="svg-label" fill="#6d8490">厘米</text><path d="M8 0V160" stroke="#92abb2" stroke-width="2"/><g id="rulerTicks"></g><path d="M-3 80H52" stroke="#dfaf37" stroke-width="2" stroke-dasharray="4 3"/><rect x="-12" y="66" width="21" height="27" rx="4" fill="#f7d76e"/><text x="-1" y="84" text-anchor="middle" font-size="12" fill="#755919" font-weight="700">★</text><g id="heightMarker"><path d="M-20 160l-10-6v12Z" fill="#147c86"/></g></g>
+            <g id="mouse" transform="translate(167 451)"><path d="M-2 33Q-40 25-29 47Q-12 66-12 41" fill="none" stroke="#ce9d9b" stroke-width="5" stroke-linecap="round"/><ellipse cx="18" cy="28" rx="20" ry="26" fill="#9fadb7"/><circle cx="9" cy="1" r="14" fill="#a7b3bb"/><circle cx="9" cy="1" r="9" fill="#e6c8c4"/><path d="M4 15Q9-6 30 1L45 16Q43 30 20 30Z" fill="#b5c0c7"/><circle cx="30" cy="11" r="2.7" fill="#284553"/><circle cx="44" cy="17" r="3.4" fill="#dfaaa4"/><path d="M36 21l18 2M35 24l15 7" stroke="#637e8d" stroke-width="1.4"/><path d="M2 34Q17 43 34 29L36 41Q21 53 7 44" fill="#e7b765"/><path d="M2 51l-7 3M26 52l8 1" stroke="#718c99" stroke-width="5" stroke-linecap="round"/></g>
+            <g id="mouseBubble" transform="translate(35 342)"><path d="M0 0H194Q206 0 206 12V57Q206 69 194 69H155L151 83L136 69H12Q0 69 0 57Z" fill="#fff" stroke="#d5e5e6"/><text x="15" y="27" class="svg-bubble">“给我一个支点，</text><text x="15" y="49" class="svg-bubble">我们一起试试看！”</text></g>
+            <g id="sceneMessage" transform="translate(550 551)"><rect x="-255" y="-22" width="510" height="43" rx="21" fill="#fff" opacity=".9"/><text id="sceneMessageText" text-anchor="middle" y="5" class="svg-status">先铺好网兜，再把支点石和木棒放到石头旁边</text></g>
+            <g id="sparkles" visibility="hidden" fill="#efc24b"><path d="M470 300l5 14 14 5-14 5-5 14-5-14-14-5 14-5ZM615 310l4 11 11 4-11 4-4 11-4-11-11-4 11-4ZM505 270l3 8 8 3-8 3-3 8-3-8-8-3 8-3Z"/></g>
+          </svg>
+          <div class="selection-hint" id="selectionHint" hidden></div>
+          <div class="success-banner" id="successBanner" hidden><span>✦</span><div><b>智慧，让石头闪闪发光！</b><small>大石头已离地 10 厘米 · 实验挑战完成</small></div><button id="successClose" aria-label="关闭成功提示">×</button></div>
+        </div>
+        <div class="scene-bottom"><div class="current-task"><span class="task-dot"></span><span id="taskText">先放网兜、支点石和木棒</span></div><button class="text-button" id="quickBuildBtn">快速搭建 <span>↗</span></button></div>
+      </section>
+      <aside class="observation-panel panel">
+        <div class="panel-title"><h2>观察台</h2><span class="live-badge">实时</span></div>
+        <div class="height-readout"><span>大石头离地高度</span><div><strong id="heightValue">0.0</strong><span>cm</span></div><div class="height-track"><i id="heightFill"></i><em></em></div><div class="scale-labels"><span>0</span><b>目标 10 cm</b><span>20</span></div></div>
+        <div class="mass-card"><div class="mass-row"><span><i class="load-dot"></i> 大石头</span><b><span id="stoneMass">5.0</span> <small>kg</small></b></div><div class="mass-row"><span><i class="basket-dot"></i> 篮中小石子</span><b><span id="basketMass">0.0</span> <small>kg</small></b></div><div class="balance-status" id="balanceStatus">等待组装完成</div></div>
+        <section class="pebbles-section"><div class="pebbles-heading"><h3>往篮子里加石子</h3><span id="pebbleMassLabel">每颗 0.5 kg</span></div><button id="pebbleSource" class="pebble-source" disabled title="点击或拖入篮子"><svg viewBox="0 0 130 55" aria-hidden="true"><ellipse cx="65" cy="46" rx="55" ry="5" fill="#d5e0de"/><path d="M15 42l6-17 16-6 19 13-4 13H21Z" fill="#96a8b2"/><path d="M44 43l-1-18 15-18 21 3 13 24-10 13Z" fill="#b8c5cb"/><path d="M76 44l5-16 21-9 17 12-4 14Z" fill="#859aa7"/><path d="M46 27l16-7 17-10M83 30l20 2" fill="none" stroke="#dce4e7" stroke-width="2"/></svg><span>拖一颗到竹篮里 <b>↗</b></span></button><div class="counter"><button id="removeBtn" disabled aria-label="取出一颗石子">−</button><div><strong id="pebbleCount">0</strong><span>颗小石子</span></div><button id="addBtn" disabled aria-label="加入一颗石子">＋</button></div></section>
+        <div class="science-note"><span>✧</span><p><b id="scienceTitle">聪明的第一步</b><span id="scienceText">支点靠近大石头，压下木棒较长的一端，撬动石头更省力。</span></p></div>
+        <button class="notes-button" id="notesBtn">▤ <span>记录我的发现</span><span>→</span></button>
+      </aside>
+    </div>
+    <div class="bottom-bar"><p id="bottomHint"><span>小提示</span> 长横梁和 4 根短支腿，组成一个稳稳的三角支架。</p><div><button class="quiet-button" id="resetBtn">↻ 重新组装</button><button class="primary-button" id="mainAction" disabled>压下木棒 <span>↓</span></button></div></div>
+    <footer><span>从童话出发，让好奇心动手。</span><span>教学简化模型 · 不使用真实重物 <i>•</i> 自动保存进度</span></footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div><div id="dragPreview" class="drag-preview" hidden></div>
+  <dialog id="helpDialog"><div class="dialog-heading"><div><span class="eyebrow">动手之前</span><h2>小老鼠的智慧工具箱</h2></div><button data-close aria-label="关闭">×</button></div><div class="help-grid"><article><span>01</span><h3>撬动，而不是硬搬</h3><p>把网兜铺在石头右侧。把小支点石放在木棒下面，再压下木棒的长端，让大石头翻进网兜。</p></article><article><span>02</span><h3>搭一个稳稳的架子</h3><p>4 根短支腿两两成 A 字，一根长横梁连接两端。先装支腿，再装横梁，最后挂上定滑轮。</p></article><article><span>03</span><h3>连好两端</h3><p>放好竹篮，把粗绳绕过定滑轮，绳的一端系网兜，另一端系篮子。点选零件后再点虚线位置，也能组装。</p></article><article><span>04</span><h3>加石子，找平衡</h3><p>点击“开始实验”，一颗颗加石子。比大石头轻时不升起，质量相等时平衡，更重时才会把大石头拉起。</p></article></div><div class="model-disclaimer"><b>故事魔法 ≠ 物理规律</b><p>升高 10 cm 后变金，是故事设定。定滑轮只改变用力方向，不省力。本实验忽略摩擦、空气阻力及绳、网兜、篮子的质量；两端位移相同、方向相反。到行程端点由限位装置停止；暂停时视作锁止。质量是教学设定，不是原书数据。请勿用真实重石头模仿。</p><p>原理参考：<a href="https://www.hyperphysics.phy-astr.gsu.edu/hbase/Mechanics/lever.html" target="_blank" rel="noopener">HyperPhysics · 简单机械</a></p></div><div class="dialog-actions"><button class="primary-button" data-close>知道了，开始动手</button></div></dialog>
+  <dialog id="settingsDialog"><div class="dialog-heading"><div><span class="eyebrow">课堂控制</span><h2>教师设置</h2></div><button data-close aria-label="关闭">×</button></div><p>改变质量，比较“几颗小石子能让大石头升起来”。应用后保留组装，但清空石子和高度。</p><form id="settingsForm"><label class="field">大石头质量（kg）<input name="stoneMass" type="number" min="1" max="20" step="0.1" required></label><label class="field">每颗小石子质量（kg）<input name="pebbleMass" type="number" min="0.1" max="2" step="0.1" required></label><div class="model-disclaimer">金石目标固定为 10 cm，最大行程 20 cm。忽略空篮、网兜和绳的质量；采用理想定滑轮模型。</div><div class="dialog-actions"><button type="button" class="quiet-button" data-close>取消</button><button type="submit" class="primary-button">应用设置</button></div></form></dialog>
+  <dialog id="libraryDialog"><div class="dialog-heading"><div><span class="eyebrow">一个故事，一个实验</span><h2>我的实验册</h2></div><button data-close aria-label="关闭">×</button></div><button class="experiment-card" id="openCurrent"><span class="experiment-number">01</span><div><h3>鼠国大力士</h3><p>杠杆与定滑轮 · 可自由组装</p></div><span>继续实验 →</span></button><div class="coming-next"><span>＋</span><div><b>下一场冒险，留给新的好奇心</b><p>目前已提供 2 个可操作实验，也可从主界面左侧目录切换。</p></div></div></dialog>
+  <dialog id="notesDialog"><div class="dialog-heading"><div><span class="eyebrow">我的小小实验报告</span><h2>记录我的发现</h2></div><button data-close aria-label="关闭">×</button></div><div id="reportSummary" class="report-summary"></div><label class="field">我观察到了什么？<textarea id="noteInput" rows="4" maxlength="4000" placeholder="例如：10 颗时两边一样重，11 颗时大石头开始上升……"></textarea></label><div class="record-table-wrap"><table><thead><tr><th>操作</th><th>小石子</th><th>篮中质量</th><th>高度</th></tr></thead><tbody id="recordRows"></tbody></table></div><div class="dialog-actions"><button class="quiet-button" id="clearLoadBtn">清空石子，重做一次</button><button class="primary-button" id="downloadReportBtn">导出实验记录</button></div></dialog>
+  <dialog id="resetDialog"><div class="dialog-heading"><h2>重新组装一次？</h2><button data-close aria-label="关闭">×</button></div><p>所有零件会回到零件盒，石子、高度和本次记录将清空。教师质量设置会保留。</p><div class="dialog-actions"><button class="quiet-button" data-close>保留当前实验</button><button class="primary-button" id="confirmResetBtn">重新组装</button></div></dialog>
+  <script src="experiments.js"></script><script src="core.js"></script><script src="app.js"></script>
+</body></html>

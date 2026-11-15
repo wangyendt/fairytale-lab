@@ -1,0 +1,12 @@
+const {test}=require('node:test');const assert=require('node:assert/strict');const C=require('../web/shadow-core.js');
+const outline=[{x:-.6,z:-1},{x:.6,z:-1},{x:.6,z:1},{x:-.6,z:1}];
+test('default projection magnifies and lands on fixed y=0',()=>{const s=C.fresh(),p=C.project(s.hand,s.light);assert.equal(p.y,0);assert.ok(C.magnification(s)>1);assert.ok(p.x>s.hand.x);});
+test('hand closer to source has larger linear shadow',()=>{const s=C.fresh(),a=C.metrics(s,outline);s.hand.y=4;const b=C.metrics(s,outline);assert.ok(b.widthCm>a.widthCm);assert.ok(b.lengthCm>a.lengthCm);assert.ok(b.magnification>a.magnification);});
+test('hand closer to floor makes shadow approach original hand size',()=>{const s=C.fresh();s.hand.y=.2;const m=C.metrics(s,outline);assert.ok(m.magnification>1&&m.magnification<1.05);});
+test('overhead source centers shadow beneath hand',()=>{const s=C.fresh();s.light.x=s.hand.x;s.light.z=s.hand.z;assert.ok(C.metrics(s,outline).offsetCm<1e-10);});
+test('moving light left shifts shadow to the opposite side',()=>{const s=C.fresh();s.light.x=-3;assert.ok(C.project(s.hand,s.light).x>0);s.light.x=3;assert.ok(C.project(s.hand,s.light).x<0);});
+test('equal or lower light cannot cast a downward shadow of horizontal hand',()=>{const s=C.fresh();s.light.y=s.hand.y;assert.equal(C.magnification(s),null);assert.equal(C.project(s.hand,s.light),null);s.light.y=.5;assert.equal(C.metrics(s,outline).valid,false);});
+test('very large shadow is reported as outside finite observation floor',()=>{const s=C.fresh();s.hand.y=5.19;assert.equal(C.metrics(s,outline).clipped,true);});
+test('yaw rotates the actual outline dimensions',()=>{const s=C.fresh(),a=C.metrics(s,outline);s.yaw=Math.PI/2;const b=C.metrics(s,outline);assert.ok(Math.abs(a.widthCm-b.lengthCm)<1e-8);});
+test('projection is collinear with source and hand point',()=>{const s=C.fresh(),p={x:.5,y:2,z:-.7},q=C.project(p,s.light);const a={x:p.x-s.light.x,y:p.y-s.light.y,z:p.z-s.light.z},b={x:q.x-s.light.x,y:q.y-s.light.y,z:q.z-s.light.z};assert.ok(Math.abs(a.x*b.y-a.y*b.x)<1e-9);assert.ok(Math.abs(a.z*b.y-a.y*b.z)<1e-9);});
+test('stored positions are validated and constrained',()=>{const s={version:2,...C.fresh()};s.hand.x=100;const t=C.sanitize(s);assert.equal(t.hand.x,4);s.light.y=Infinity;assert.equal(C.sanitize(s),null);assert.equal(C.sanitize('{broken'),null);});

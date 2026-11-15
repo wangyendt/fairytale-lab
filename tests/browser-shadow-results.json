@@ -1,0 +1,35 @@
+{
+  "verifiedDate": "2026-11-15",
+  "ok": true,
+  "checks": [
+    {
+      "name": "projection-and-reference",
+      "baseline": 1.7333333333333334,
+      "near": 4.333333333333333,
+      "low": 1.0947368421052632
+    },
+    {
+      "name": "hand-direct-pointer-drag",
+      "passed": true
+    },
+    {
+      "name": "light-direct-pointer-drag",
+      "passed": true
+    },
+    {
+      "name": "vertical-handle",
+      "passed": true
+    },
+    {
+      "name": "low-source-warning",
+      "passed": true
+    }
+  ],
+  "renderer": {
+    "framework": "Three.js",
+    "revision": "187",
+    "webgl2": true,
+    "ready": true,
+    "triangles": 4462
+  }
+}

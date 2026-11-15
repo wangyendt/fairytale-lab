@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#147c86"><title>童话实验室 · 光与小手的影子</title><link rel="icon" href="assets/mouse.png"><link rel="stylesheet" href="shadow.css"></head>
+<body><main class="shadow-page">
+  <header class="lesson-heading"><div><div class="eyebrow">光影里的科学 <span>/</span> 实验 02</div><h1>光与小手的影子 <span>3D 探索</span></h1><p>移动光源，伸出小手，看看影子会跑向哪里。</p></div><button class="quiet" id="helpBtn">? <span>怎么玩</span></button></header>
+  <div class="lab-layout">
+    <section class="stage-column">
+      <div class="stage-card">
+        <div class="stage-toolbar"><span class="stage-title"><i></i> 光影观察场</span><div class="mode-switch" role="group" aria-label="鼠标操作模式"><button class="active" data-mode="move">↔ 移动物体</button><button data-mode="orbit">⟳ 旋转视角</button></div><button id="viewReset" class="toolbar-btn" title="恢复初始视角" aria-label="恢复初始视角">⌖</button></div>
+        <div class="viewport" id="viewport">
+          <div id="renderStatus" class="render-status"><span class="spinner"></span><b>正在点亮 3D 实验台…</b><small>本地 Three.js · 无需联网</small></div>
+          <div class="scene-badge"><span></span> 实时 3D <i>·</i> 地面固定</div>
+          <div class="view-buttons" role="group" aria-label="观察视角"><button data-view="perspective" class="active">立体</button><button data-view="top">俯视</button><button data-view="side">侧视</button></div>
+          <div id="lightLabel" class="object-label light-label"><button data-select="light"><i>☀</i> 光源 <span id="lightLabelHeight">52 cm</span></button><button class="height-handle" data-height="light" title="上下拖动改变高度" aria-label="拖动调整光源高度">↕</button></div>
+          <div id="handLabel" class="object-label hand-label"><button data-select="hand"><i>✋</i> 小手 <span id="handLabelHeight">22 cm</span></button><button class="height-handle" data-height="hand" title="上下拖动改变高度" aria-label="拖动调整小手高度">↕</button></div>
+          <div id="shadowLabel" class="shadow-label">地上的影子</div>
+          <div class="scene-warning" id="sceneWarning" role="status" hidden></div>
+          <div class="ground-legend"><span class="axis-x"></span> 左右 X <span class="axis-z"></span> 前后 Z <i></i> 每小格 10 cm</div>
+        </div>
+        <div class="stage-footer"><span id="interactionHint"><b>试试看</b> 拖动小手或光源；拖 ↕ 调高度。</span><div><label><input id="raysToggle" type="checkbox" checked>光线路径</label><label><input id="gridToggle" type="checkbox" checked>地面网格</label></div></div>
+      </div>
+      <div class="explore-heading"><h2>换一种摆法，发现一点不同</h2><span>点击就能对比</span></div>
+      <div class="preset-list"><button data-preset="near-light"><span class="preset-icon large">✋</span><b>小手靠近光源</b><small>影子会变多大？</small><i>↗</i></button><button data-preset="near-ground"><span class="preset-icon small">✋</span><b>小手靠近地面</b><small>影子会不会缩小？</small><i>↘</i></button><button data-preset="side-light"><span class="preset-icon sun">☀</span><b>光从侧上方照来</b><small>影子往哪边走？</small><i>→</i></button></div>
+    </section>
+    <aside class="inspector" aria-label="物体控制和观察数据">
+      <div class="inspector-heading"><h2>移动谁？</h2><span>地面不动</span></div>
+      <div class="object-tabs"><button data-select="light"><span>☀</span> 光源</button><button data-select="hand" class="active"><span>✋</span> 小手</button></div>
+      <div class="position-controls">
+        <label class="slider-label" for="heightSlider"><span><i class="height-dot"></i>离地高度 <small>Y</small></span><output id="heightOutput">22 <small>cm</small></output></label><input id="heightSlider" type="range" min="2" max="70" step="1" value="22" aria-label="所选物体离地高度">
+        <div class="range-ends"><span>靠近地面</span><span>向上移动</span></div>
+        <label class="slider-label compact" for="xSlider"><span>左右位置 <small>X</small></span><output id="xOutput">0 cm</output></label><input id="xSlider" type="range" min="-40" max="40" step="1" value="0" aria-label="所选物体左右位置">
+        <label class="slider-label compact" for="zSlider"><span>前后位置 <small>Z</small></span><output id="zOutput">0 cm</output></label><input id="zSlider" type="range" min="-40" max="40" step="1" value="0" aria-label="所选物体前后位置">
+        <label class="slider-label compact" for="yawSlider"><span>小手转个方向 <small>↻</small></span><output id="yawOutput">0°</output></label><input id="yawSlider" type="range" min="-180" max="180" step="5" value="0" aria-label="小手水平旋转角度">
+      </div>
+      <section class="observation"><div class="inspector-heading"><h2>影子观察台</h2><span class="live-dot">实时</span></div><div class="magnification"><span>影子线性放大</span><div><strong id="magnificationValue">1.73</strong><b>倍</b></div><p id="observationText">手越靠近光源，影子通常越大。</p></div><dl class="measurements"><div><dt>手离地面</dt><dd id="handHeightValue">22 cm</dd></div><div><dt>光源离地面</dt><dd id="lightHeightValue">52 cm</dd></div><div><dt>影子尺寸 <small>宽 × 长</small></dt><dd id="shadowSizeValue">—</dd></div><div><dt>中心偏移</dt><dd id="offsetValue">—</dd></div></dl></section>
+      <button class="compare-btn" id="captureBtn">⊞ <span>留下这次影子作对比</span><i>＋</i></button>
+      <div class="reference-info" id="referenceInfo" hidden><div><b>蓝色轮廓 = 上一次影子</b><button id="clearReference" aria-label="清除对比影子">×</button></div><p id="referenceText"></p></div>
+      <div class="science-card"><span>✧</span><p><b>影子为什么会动？</b>光沿直线传播。手挡住光，地面上照不到光的地方就形成了影子。</p></div>
+    </aside>
+  </div>
+  <footer class="page-footer"><span id="saveStatus">点光源 · 不透明小手 · 固定地面 <i>•</i> 自动保存位置</span><button id="resetExperiment" class="quiet">↻ 重置实验</button></footer>
+</main>
+<dialog id="helpDialog"><header><div><small>小手动一动，光影变一变</small><h2>欢迎来到光影观察场</h2></div><button id="closeHelp" aria-label="关闭操作指南">×</button></header><div class="help-cards"><article><b>↔ 拖动物体</b><p>直接拖小手或灯泡，改变左右、前后位置。地面始终不动。点击物体标签可选中它。</p></article><article><b>↕ 上下调高度</b><p>拖标签旁的 ↕ 箭头，或使用右侧高度滑杆。手靠近光源，影子变大；靠近地面，影子变小。</p></article><article><b>⟳ 换个角度看</b><p>切到“旋转视角”，在空白处拖动。滚轮缩放；右键拖动也可旋转。俯视看形状，侧视看高度。</p></article><article><b>⊞ 留下对比</b><p>记录一次影子轮廓，再移动物体。蓝色轮廓保持原样，方便比较新旧影子的大小和位置。</p></article></div><div class="help-model"><b>给老师的模型说明</b><p>采用 Three.js 真正的 3D 场景。光源近似理想点光源，手的投影近似水平不透明薄片，忽略厚度、散射和半影。用光线与固定地面的几何交点实时生成影子，不是预制动画。放大倍数 = 光源高度 ÷（光源高度 − 手高度）。光源必须高于手，才有向地面的有限投影；影子太大时会超出观察地面。环境补光仅用于看清模型，不产生额外教学影子。</p><p>屏幕中的灯不会真的发热；不要用真实高温灯泡做近距离实验。</p></div><button class="start-button" id="startExplore">知道了，动手探索</button></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+<script src="shadow-core.js"></script><script src="vendor/shadow.bundle.js"></script></body></html>

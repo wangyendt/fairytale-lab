@@ -1,0 +1,36 @@
+{
+  "ok": true,
+  "version": "2.0.0",
+  "engine": "edgechromium",
+  "test": "two-experiment-desktop-integration",
+  "title": "童话实验室 · 光与小手的影子",
+  "catalog": {
+    "active": "hand-shadow",
+    "experiments": [
+      {
+        "id": "mouse-strongman",
+        "title": "鼠国大力士"
+      },
+      {
+        "id": "hand-shadow",
+        "title": "光与小手的影子"
+      }
+    ]
+  },
+  "shadow": {
+    "renderer": {
+      "framework": "Three.js",
+      "revision": "187",
+      "webgl2": true,
+      "ready": true,
+      "triangles": 4462
+    },
+    "initialMagnification": 1.7333333333333334,
+    "nearLightMagnification": 4.333333333333333,
+    "nearGroundMagnification": 1.0947368421052632
+  },
+  "installed": 11,
+  "pebbles": 11,
+  "heightCm": 12.479596214814801,
+  "reachedGold": true
+}
