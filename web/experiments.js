@@ -16,5 +16,13 @@ window.EXPERIMENT_CATALOG = Object.freeze([
     entry: 'shadow.html',
     theme: 'light',
     principles: ['光沿直线传播', '点光源投影']
+  }),
+  Object.freeze({
+    id: 'cosmic-voyage',
+    title: '从街角到黑洞',
+    subtitle: '连续尺度远航 · 黑洞拖拽互动',
+    entry: 'cosmos.html',
+    theme: 'cosmos',
+    principles: ['宇宙尺度', '轨道运动', '引力与黑洞']
   })
 ]);

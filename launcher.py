@@ -23,7 +23,7 @@ def run() -> None:
     app_data = Path(os.getenv("LOCALAPPDATA", tempfile.gettempdir())) / "FairytaleLab"
     app_data.mkdir(parents=True, exist_ok=True)
     logging.basicConfig(filename=app_data / "desktop.log", level=logging.INFO, encoding="utf-8")
-    logging.info("Starting FairytaleLab 2.0.0")
+    logging.info("Starting FairytaleLab 3.1.0")
     try:
         import webview
 
@@ -38,9 +38,9 @@ def run() -> None:
         )
 
         def smoke_test() -> None:
-            result = {"ok": False, "version": "2.0.0", "engine": "edgechromium", "test": "two-experiment-desktop-integration"}
+            result = {"ok": False, "version": "3.1.0", "engine": "edgechromium", "test": "three-experiment-desktop-integration"}
             try:
-                deadline = time.monotonic() + 55
+                deadline = time.monotonic() + 80
                 while time.monotonic() < deadline:
                     if window.evaluate_js("typeof window.LabShell === 'object'"):
                         break
@@ -50,6 +50,44 @@ def run() -> None:
                 result["title"] = window.evaluate_js("document.title")
                 result["catalog"] = window.evaluate_js("window.LabShell.snapshot()")
                 frame = "document.getElementById('experimentFrame').contentWindow"
+                window.evaluate_js("window.LabShell.openExperiment('cosmic-voyage')")
+                while time.monotonic() < deadline:
+                    if window.evaluate_js(f"typeof {frame}.CosmosLab === 'object'"):
+                        break
+                    time.sleep(0.2)
+                else:
+                    raise TimeoutError("The cosmic voyage did not initialize")
+                cosmos = window.evaluate_js(f"{frame}.CosmosLab.snapshot()")
+                zoom_checks = []
+                for chapter in (0, 2, 4, 5):
+                    window.evaluate_js(f"{frame}.document.querySelector('[data-chapter=\"{chapter}\"]').click()")
+                    while time.monotonic() < deadline:
+                        current = window.evaluate_js(f"{frame}.CosmosLab.snapshot()")
+                        if current['chapter'] == chapter and abs(current['renderJourney'] - current['state']['journey']) < .001:
+                            break
+                        time.sleep(.1)
+                    else:
+                        raise TimeoutError(f"Continuous zoom never reached scale {chapter}")
+                    zoom_checks.append({'chapter': chapter, 'logDistance': current['zoom']['logDistance'], 'origin': current['zoom']['origin']})
+                if not all(zoom_checks[i]['logDistance'] < zoom_checks[i+1]['logDistance'] for i in range(3)):
+                    raise AssertionError("Voyage scale is not monotonic")
+                result['continuousZoom'] = zoom_checks
+
+                window.evaluate_js(f"{frame}.document.querySelector('[data-chapter=\"6\"]').click();{frame}.document.getElementById('demoOrbit').click()")
+                time.sleep(.4)
+                orbit = window.evaluate_js(f"{frame}.CosmosLab.snapshot()")
+                if len(orbit['bodies']) != 1 or orbit['captured']:
+                    raise AssertionError("The orbiting sample was incorrectly captured")
+                window.evaluate_js(f"{frame}.document.getElementById('demoDrop').click()")
+                while time.monotonic() < deadline:
+                    fall = window.evaluate_js(f"{frame}.CosmosLab.snapshot()")
+                    if fall['captured'] > 0:
+                        break
+                    time.sleep(.15)
+                else:
+                    raise TimeoutError("The falling sample never crossed the model horizon")
+                result['cosmos'] = {'renderer': cosmos['renderer'], 'planets': len(cosmos['planets']), 'textures': cosmos['textures'], 'orbitPreserved': orbit['captured'] == 0, 'dropCaptured': fall['captured']}
+                window.evaluate_js("window.LabShell.openExperiment('hand-shadow')")
                 while time.monotonic() < deadline:
                     if window.evaluate_js(f"typeof {frame}.ShadowLab === 'object'"):
                         break

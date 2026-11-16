@@ -2,147 +2,261 @@ TAP version 13
 # Subtest: inventory contains exactly 5 frame timbers and 11 attachable pieces
 ok 1 - inventory contains exactly 5 frame timbers and 11 attachable pieces
   ---
-  duration_ms: 0.4399
+  duration_ms: 0.4721
   type: 'test'
   ...
 # Subtest: dependencies prevent unsupported beam, pulley, rope and lever
 ok 2 - dependencies prevent unsupported beam, pulley, rope and lever
   ---
-  duration_ms: 0.1294
+  duration_ms: 0.1349
   type: 'test'
   ...
 # Subtest: rope requires rock already loaded into net
 ok 3 - rope requires rock already loaded into net
   ---
-  duration_ms: 0.0797
+  duration_ms: 0.0875
   type: 'test'
   ...
 # Subtest: not assembled means no motion, even if running was requested
 ok 4 - not assembled means no motion, even if running was requested
   ---
-  duration_ms: 0.5273
+  duration_ms: 0.7624
   type: 'test'
   ...
 # Subtest: lighter basket cannot lift rock from the ground
 ok 5 - lighter basket cannot lift rock from the ground
   ---
-  duration_ms: 0.4258
+  duration_ms: 0.526
   type: 'test'
   ...
 # Subtest: equal mass stays balanced and never turns to gold
 ok 6 - equal mass stays balanced and never turns to gold
   ---
-  duration_ms: 0.6041
+  duration_ms: 0.6861
   type: 'test'
   ...
 # Subtest: 11 pebbles lift rock and cross the exact 10cm magic threshold
 ok 7 - 11 pebbles lift rock and cross the exact 10cm magic threshold
   ---
-  duration_ms: 0.1611
+  duration_ms: 0.1964
   type: 'test'
   ...
 # Subtest: gold is not awarded at 9.99cm
 ok 8 - gold is not awarded at 9.99cm
   ---
-  duration_ms: 0.0631
+  duration_ms: 0.0566
   type: 'test'
   ...
 # Subtest: pause locks the load, travel stays within 0..20cm
 ok 9 - pause locks the load, travel stays within 0..20cm
   ---
-  duration_ms: 0.606
+  duration_ms: 0.6694
   type: 'test'
   ...
 # Subtest: acceleration follows ideal Atwood equation
 ok 10 - acceleration follows ideal Atwood equation
   ---
-  duration_ms: 0.0995
+  duration_ms: 0.1052
   type: 'test'
   ...
 # Subtest: restored progress is paused and orphaned assemblies are rejected
 ok 11 - restored progress is paused and orphaned assemblies are rejected
   ---
-  duration_ms: 0.3708
+  duration_ms: 0.4724
   type: 'test'
   ...
 # Subtest: custom masses change balancing count
 ok 12 - custom masses change balancing count
   ---
-  duration_ms: 0.2347
+  duration_ms: 0.1307
   type: 'test'
   ...
 # Subtest: all allowed mass settings can win within pebble capacity
 ok 13 - all allowed mass settings can win within pebble capacity
   ---
-  duration_ms: 0.1489
+  duration_ms: 0.1532
+  type: 'test'
+  ...
+# Subtest: solar system contains eight planets, not eight stars
+ok 14 - solar system contains eight planets, not eight stars
+  ---
+  duration_ms: 0.5032
+  type: 'test'
+  ...
+# Subtest: display orbit radii stay ordered and explicitly compress AU distances
+ok 15 - display orbit radii stay ordered and explicitly compress AU distances
+  ---
+  duration_ms: 0.0897
+  type: 'test'
+  ...
+# Subtest: Earth completes one teaching circular orbit in one Earth year
+ok 16 - Earth completes one teaching circular orbit in one Earth year
+  ---
+  duration_ms: 0.7498
+  type: 'test'
+  ...
+# Subtest: navigation stays in six continuous scales and a separate black-hole lab
+ok 17 - navigation stays in six continuous scales and a separate black-hole lab
+  ---
+  duration_ms: 0.1097
+  type: 'test'
+  ...
+# Subtest: solar-mass Schwarzschild radius is about 2.95 km
+ok 18 - solar-mass Schwarzschild radius is about 2.95 km
+  ---
+  duration_ms: 0.0787
+  type: 'test'
+  ...
+# Subtest: larger black hole has proportionally larger physical horizon
+ok 19 - larger black hole has proportionally larger physical horizon
+  ---
+  duration_ms: 0.0476
+  type: 'test'
+  ...
+# Subtest: a Sun-like star disrupts outside Sgr A* but potentially inside M87*
+ok 20 - a Sun-like star disrupts outside Sgr A* but potentially inside M87*
+  ---
+  duration_ms: 0.0621
+  type: 'test'
+  ...
+# Subtest: invalid sample placements are rejected
+ok 21 - invalid sample placements are rejected
+  ---
+  duration_ms: 0.1067
+  type: 'test'
+  ...
+# Subtest: zero initial velocity falls inward and eventually crosses the model horizon
+ok 22 - zero initial velocity falls inward and eventually crosses the model horizon
+  ---
+  duration_ms: 1.269
+  type: 'test'
+  ...
+# Subtest: sideways velocity gives a stable orbit, not automatic capture
+ok 23 - sideways velocity gives a stable orbit, not automatic capture
+  ---
+  duration_ms: 3.6193
+  type: 'test'
+  ...
+# Subtest: captured samples stop integrating
+ok 24 - captured samples stop integrating
+  ---
+  duration_ms: 0.6261
+  type: 'test'
+  ...
+# Subtest: restoration rejects invalid versions and nonfinite numbers
+ok 25 - restoration rejects invalid versions and nonfinite numbers
+  ---
+  duration_ms: 0.2113
+  type: 'test'
+  ...
+# Subtest: logarithmic voyage is finite, strictly monotone and has no scale resets
+ok 26 - logarithmic voyage is finite, strictly monotone and has no scale resets
+  ---
+  duration_ms: 5.2255
+  type: 'test'
+  ...
+# Subtest: log zoom has continuous values and slopes at every former chapter edge
+ok 27 - log zoom has continuous values and slopes at every former chapter edge
+  ---
+  duration_ms: 0.1145
+  type: 'test'
+  ...
+# Subtest: layer alpha and recentering remain continuous throughout the round trip
+ok 28 - layer alpha and recentering remain continuous throughout the round trip
+  ---
+  duration_ms: 4.0502
+  type: 'test'
+  ...
+# Subtest: navigation landmarks are ordered and the hole is not the end of the zoom bar
+ok 29 - navigation landmarks are ordered and the hole is not the end of the zoom bar
+  ---
+  duration_ms: 0.1161
+  type: 'test'
+  ...
+# Subtest: real circular orbit coordinates preserve the Earth AU and period
+ok 30 - real circular orbit coordinates preserve the Earth AU and period
+  ---
+  duration_ms: 0.0853
+  type: 'test'
+  ...
+# Subtest: hole mode restores separately without consuming the saved voyage position
+ok 31 - hole mode restores separately without consuming the saved voyage position
+  ---
+  duration_ms: 0.0606
+  type: 'test'
+  ...
+# Subtest: recentring never puts the flight camera inside Earth during ascent
+ok 32 - recentring never puts the flight camera inside Earth during ascent
+  ---
+  duration_ms: 0.7247
   type: 'test'
   ...
 # Subtest: default projection magnifies and lands on fixed y=0
-ok 14 - default projection magnifies and lands on fixed y=0
+ok 33 - default projection magnifies and lands on fixed y=0
   ---
-  duration_ms: 0.4688
+  duration_ms: 0.5122
   type: 'test'
   ...
 # Subtest: hand closer to source has larger linear shadow
-ok 15 - hand closer to source has larger linear shadow
+ok 34 - hand closer to source has larger linear shadow
   ---
-  duration_ms: 0.1712
+  duration_ms: 0.1764
   type: 'test'
   ...
 # Subtest: hand closer to floor makes shadow approach original hand size
-ok 16 - hand closer to floor makes shadow approach original hand size
+ok 35 - hand closer to floor makes shadow approach original hand size
   ---
-  duration_ms: 0.0736
+  duration_ms: 0.1267
   type: 'test'
   ...
 # Subtest: overhead source centers shadow beneath hand
-ok 17 - overhead source centers shadow beneath hand
+ok 36 - overhead source centers shadow beneath hand
   ---
-  duration_ms: 0.0571
+  duration_ms: 0.1161
   type: 'test'
   ...
 # Subtest: moving light left shifts shadow to the opposite side
-ok 18 - moving light left shifts shadow to the opposite side
+ok 37 - moving light left shifts shadow to the opposite side
   ---
-  duration_ms: 0.0585
+  duration_ms: 0.0709
   type: 'test'
   ...
 # Subtest: equal or lower light cannot cast a downward shadow of horizontal hand
-ok 19 - equal or lower light cannot cast a downward shadow of horizontal hand
+ok 38 - equal or lower light cannot cast a downward shadow of horizontal hand
   ---
-  duration_ms: 0.3962
+  duration_ms: 0.0625
   type: 'test'
   ...
 # Subtest: very large shadow is reported as outside finite observation floor
-ok 20 - very large shadow is reported as outside finite observation floor
+ok 39 - very large shadow is reported as outside finite observation floor
   ---
-  duration_ms: 0.0933
+  duration_ms: 0.1958
   type: 'test'
   ...
 # Subtest: yaw rotates the actual outline dimensions
-ok 21 - yaw rotates the actual outline dimensions
+ok 40 - yaw rotates the actual outline dimensions
   ---
-  duration_ms: 0.0769
+  duration_ms: 0.11
   type: 'test'
   ...
 # Subtest: projection is collinear with source and hand point
-ok 22 - projection is collinear with source and hand point
+ok 41 - projection is collinear with source and hand point
   ---
-  duration_ms: 0.0728
+  duration_ms: 0.0996
   type: 'test'
   ...
 # Subtest: stored positions are validated and constrained
-ok 23 - stored positions are validated and constrained
+ok 42 - stored positions are validated and constrained
   ---
-  duration_ms: 0.1845
+  duration_ms: 0.2392
   type: 'test'
   ...
-1..23
-# tests 23
+1..42
+# tests 42
 # suites 0
-# pass 23
+# pass 42
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 50.9339
+# duration_ms 74.6881

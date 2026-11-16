@@ -1,0 +1,91 @@
+{
+  "ok": true,
+  "version": "3.1.0",
+  "checks": [
+    {
+      "name": "six-scales-and-local-hole-lab",
+      "passed": true
+    },
+    {
+      "name": "continuous-rendered-frame-audit",
+      "frames": 1372,
+      "maxLogStep": 0.03572944794064181,
+      "maxCameraStep": 0.07265719709545622,
+      "start": 0.005278499013717481,
+      "end": 5
+    },
+    {
+      "name": "real-mouse-wheel-across-scales",
+      "passed": true
+    },
+    {
+      "name": "sideways-orbit",
+      "radius": 6.000000078008222,
+      "captured": 0
+    },
+    {
+      "name": "zero-velocity-capture",
+      "passed": true
+    },
+    {
+      "name": "m87-tide-inside-horizon",
+      "tidal": 0.0676342080260676
+    },
+    {
+      "name": "pause-stops-motion",
+      "passed": true
+    },
+    {
+      "name": "tray-pointer-drop",
+      "passed": true
+    },
+    {
+      "name": "existing-body-drag",
+      "passed": true
+    },
+    {
+      "name": "return-keeps-voyage-and-samples",
+      "journey": 4.01
+    },
+    {
+      "name": "eight-planets-and-inspector",
+      "passed": true
+    },
+    {
+      "name": "shell-help-dispatch",
+      "passed": true
+    },
+    {
+      "name": "switch-away-and-restore-zoom",
+      "passed": true
+    },
+    {
+      "name": "390px-no-horizontal-overflow",
+      "outer": true,
+      "inner": true
+    }
+  ],
+  "renderer": {
+    "ready": true,
+    "framework": "Three.js",
+    "revision": "187",
+    "webgl2": true,
+    "triangles": 24498
+  },
+  "textures": {
+    "earth": true,
+    "moon": true
+  },
+  "supplemental": {
+    "autoFlight4x": {
+      "ok": true,
+      "journey": 5,
+      "mode": "voyage",
+      "flight": false
+    },
+    "console": {
+      "errors": 0,
+      "warnings": 0
+    }
+  }
+}

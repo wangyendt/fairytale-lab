@@ -1,4 +1,4 @@
-# 童话实验室 2.0 · 两个实验，一张工作台
+# 童话实验室 3.1 · 三个实验，一张工作台
 
 Windows 离线教学应用，使用 **pywebview + Edge WebView2** 桌面外壳。主界面左侧是一列独立滚动的实验卡片，右侧显示当前实验。
 
@@ -12,18 +12,21 @@ Windows 离线教学应用，使用 **pywebview + Edge WebView2** 桌面外壳�
 
 ## 界面预览
 
+![从街角到黑洞](docs/cosmos-preview.png)
+
 ![光与小手的影子](docs/shadow-preview.png)
 
 ## 左侧实验目录
 
-目前实际可用 **2 个实验**：
+目前实际可用 **3 个实验**：
 
 1. **鼠国大力士**：原有零件吸附、杠杆入网、定滑轮配重和 10 cm 变金流程均保留。
 2. **光与小手的影子**：真正的 Three.js 3D 场景，光源、立体手模型和固定地面；实时几何投影。
+3. **从街角到黑洞**：从街道经地球、太阳系、恒星邻域、银河系连续拉远到宇宙；滚轮往返、尺度读数、可拖拽样本的黑洞观察窗口。详见 `docs/cosmos.md`。
 
-把鼠标放在左侧卡片列表内，用滚轮上下浏览，再点击卡片进入。列表有自己的滚动区域，不会让 3D 视角跟着缩放。当前只有两项，窗口足够高时不需要滚动；窗口较矮或将来实验更多时可滚动。滚轮只浏览目录，不会擅自切换实验。
+把鼠标放在左侧卡片列表内，用滚轮上下浏览，再点击卡片进入。列表有自己的滚动区域，不会让 3D 视角跟着缩放。当前有三项，窗口足够高时不需要滚动；窗口较矮或将来实验更多时可滚动。滚轮只浏览目录，不会擅自切换实验。
 
-切换时分别保存各实验进度。首次打开新版默认进入实验 02，之后记住上次选择。实验 01 切离时自动暂停；返回后需点击继续。
+切换时分别保存各实验进度。首次打开新版默认进入实验 03，之后记住上次选择。实验 01 切离时自动暂停；返回后需点击继续。
 
 ## 实验 02：光与小手的影子
 
@@ -71,13 +74,17 @@ Windows 离线教学应用，使用 **pywebview + Edge WebView2** 桌面外壳�
 ## 代码结构
 
 ```text
-launcher.py                  Windows WebView2 桌面外壳及双实验集成自检
+launcher.py                  Windows WebView2 桌面外壳及三实验集成自检
 web/index.html               主界面：左侧目录 + 右侧 iframe
 web/shell.js / shell.css      目录切换、独立滚动、帮助消息与实验隔离
 web/experiments.js           所有实验的注册入口
 web/mouse.html               实验 01 页面（原版 index 已改名）
 web/core.js / app.js          实验 01 模型和交互
 web/shadow.html / shadow.css  实验 02 界面
+web/cosmos.html / cosmos.css  实验 03 界面
+web/cosmos-core.js           宇宙章节、参数和样本积分
+web/src/cosmos.js            宇宙 3D 场景与交互
+web/src/blackhole-shader.js   近似引力透镜和吸积盘
 web/shadow-core.js           无渲染依赖的几何投影和存档验证
 web/src/shadow.js            实验 02 Three.js 源码
 web/vendor/shadow.bundle.js  已编译的本地脚本，包含 Three.js / OrbitControls
@@ -87,7 +94,7 @@ requirements.txt             桌面 Python 依赖
 build.ps1                    Windows EXE 打包
 ```
 
-## 添加第三个实验
+## 添加后续实验
 
 1. 在 `web/` 新建独立 HTML 实验页及模型、交互脚本。各实验应使用不同存储键。
 2. 在 `web/experiments.js` 注册 `{ id, title, subtitle, entry, theme, principles }`。
@@ -113,6 +120,6 @@ npm test
 ./dist/FairytaleLab.exe --smoke-test desktop-test.json
 ```
 
-桌面自检会打开真实窗口，检查 Three.js / WebGL 2、两种手高的影子变化，再切到实验 01，自动搭建并验证金石，最后退出。测试使用临时配置，不修改学生真实进度。模型测试 23 项及交互 / EXE 验证记录在 `tests/` 中。
+桌面自检会打开真实窗口，检查宇宙场景、黑洞环绕 / 下落、两种手高的影子变化，再切到实验 01，自动搭建并验证金石，最后退出。测试使用临时配置，不修改学生真实进度。模型测试 35 项及交互 / EXE 验证记录在 `tests/` 中。
 
 浏览器测试脚本 `tests/browser-shadow.check.js` 是供 Playwright 浏览器工具调用的 Page 检查函数，开发时通过本地静态服务访问主入口后执行；不是普通 Node 单元测试文件。

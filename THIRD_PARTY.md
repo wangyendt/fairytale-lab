@@ -16,3 +16,11 @@ The Windows executable includes Python and dependencies installed from the follo
 The WebView2 browser runtime is installed separately by Microsoft and is not included in this executable. This app does not bundle Chromium/Electron.
 
 License and notice files supplied by the installed Python distributions are reproduced under `third_party_licenses/`. Icon artwork and experiment scene graphics were authored for this project; there are no downloaded book illustrations, external fonts, or copied story pages.
+
+## Astronomy imagery (3.0)
+
+Earth and lunar imagery from NASA’s official [NASA-3D-Resources repository](https://github.com/nasa/NASA-3D-Resources), with exact paths and limitations in `web/assets/cosmos/SOURCES.md`. All galaxy and black-hole scenes are procedural visualizations, not EHT photographs or movie footage.
+
+## Interaction reference (3.1)
+
+The continuous scroll/LOD interaction is inspired by [Stellar Odyssey](https://stellar.guushu.com/), whose source is AGPL-3.0. This app independently implements its own logarithmic scale renderer; no Stellar Odyssey code, survey catalogue, imagery or audio is included. The original project is not embedded or redistributed.

@@ -1,11 +1,11 @@
 {
   "ok": true,
-  "version": "2.0.0",
+  "version": "3.1.0",
   "engine": "edgechromium",
-  "test": "two-experiment-desktop-integration",
-  "title": "童话实验室 · 光与小手的影子",
+  "test": "three-experiment-desktop-integration",
+  "title": "童话实验室 · 从街角到黑洞",
   "catalog": {
-    "active": "hand-shadow",
+    "active": "cosmic-voyage",
     "experiments": [
       {
         "id": "mouse-strongman",
@@ -14,8 +14,50 @@
       {
         "id": "hand-shadow",
         "title": "光与小手的影子"
+      },
+      {
+        "id": "cosmic-voyage",
+        "title": "从街角到黑洞"
       }
     ]
+  },
+  "continuousZoom": [
+    {
+      "chapter": 0,
+      "logDistance": 1.3010299956639813,
+      "origin": "shared-floating-origin"
+    },
+    {
+      "chapter": 2,
+      "logDistance": 13.152238476081248,
+      "origin": "shared-floating-origin"
+    },
+    {
+      "chapter": 4,
+      "logDistance": 21.037956044585144,
+      "origin": "shared-floating-origin"
+    },
+    {
+      "chapter": 5,
+      "logDistance": 26.5,
+      "origin": "shared-floating-origin"
+    }
+  ],
+  "cosmos": {
+    "renderer": {
+      "ready": true,
+      "framework": "Three.js",
+      "revision": "187",
+      "webgl2": true,
+      "triangles": 50632
+    },
+    "planets": 8,
+    "textures": {
+      "earth": true,
+      "moon": true
+    },
+    "orbitPreserved": true,
+    "dropCaptured": 1
   },
   "shadow": {
     "renderer": {
@@ -31,6 +73,6 @@
   },
   "installed": 11,
   "pebbles": 11,
-  "heightCm": 12.479596214814801,
+  "heightCm": 12.19540326666666,
   "reachedGold": true
 }
